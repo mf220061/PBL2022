@@ -1,6 +1,7 @@
 version: "3"
 services:
   app:
+    container_name: pbl-app
     build: ./app
     links:
       - db
@@ -8,6 +9,7 @@ services:
       - "5000:5000"
 
   db:
+    container_name: pbl-db
     image: mysql:8.0.21
     command: --default-authentication-plugin=caching_sha2_password
     ports:
@@ -16,3 +18,10 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:ro
+
+  adminer:
+    container_name: pbl-adminer
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
