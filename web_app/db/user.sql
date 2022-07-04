@@ -1,5 +1,5 @@
-CREATE DATABASE roytuts;
-use roytuts;
+CREATE DATABASE blog;
+use blog;
 
 CREATE TABLE `user` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
