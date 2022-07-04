@@ -1,14 +1,14 @@
 version: "3"
 services:
-  app:
-    container_name: pbl-app
-    build: ./app
+  flask_app:
+    container_name: pbl-flask_app
+    build: ./flask_app
     links:
       - db
     volumes:
-      - ./app:/app
+      - ./flask_app:/app
       - socket:/tmp
-    command: uwsgi --ini /app/app.ini
+    command: /bin/bash -c "uwsgi --ini /app/app.ini"
     #ports:
       #- "5000:5000"
 
