@@ -1,6 +1,9 @@
-web_app/app/__pycache__/
-web_app/app/*.tmp
-web_app/app/uwsgi.log
+web_app/flask_app/__pycache__/
+web_app/flask_app/*.tmp
+web_app/flask_app/uwsgi.log
+
+web_app/db/data/
+web_app/db/logs/
 
 venv/
 

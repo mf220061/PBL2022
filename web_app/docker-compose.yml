@@ -8,6 +8,7 @@ services:
     volumes:
       - ./flask_app:/app
       - socket:/tmp
+        #- ./flask_app/instance:/app/instance
     command: /bin/bash -c "uwsgi --ini /app/app.ini"
     #ports:
       #- "5000:5000"
@@ -30,7 +31,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - ./db:/docker-entrypoint-initdb.d/:ro
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+      - ./db/data:/var/lib/mysql
+      - ./db/logs:/var/log/mysql
 
   adminer:
     container_name: pbl-adminer
