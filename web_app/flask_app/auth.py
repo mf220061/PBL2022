@@ -27,14 +27,20 @@ def register():
             error = 'Password is required.'
         elif cursor.fetchone() is not None:
             error = f"User {username} is already registered."
+        cursor.close()
+        #connection.close()
 
         if error is None:
+            connection = get_db()
+            cursor = connection.cursor(dictionary=True)
             cursor.execute(
                 "INSERT INTO user (username, password) VALUES ('{}', '{}')".format(
                     username, generate_password_hash(password)
                 )
             )
             connection.commit()
+            cursor.close()
+            #connection.close()
             return redirect(url_for('auth.login'))
 
         flash(error)
@@ -53,6 +59,8 @@ def login():
             "SELECT * FROM user WHERE username = '{}'".format(username)
         )
         user = cursor.fetchone()
+        cursor.close()
+        #connection.close()
 
         if user is None:
             error = 'Incorrect username.'
@@ -81,6 +89,8 @@ def load_logged_in_user():
             "SELECT * FROM user WHERE id = '{}'".format(user_id)
         )
         g.user = cursor.fetchone()
+        cursor.close()
+        #connection.close()
 
 
 @bp.route('/logout')

@@ -18,6 +18,8 @@ def index():
         " ORDER BY created DESC"
     )
     posts = cursor.fetchall()
+    cursor.close()
+    #connection.close()
     return render_template('blog/index.html', posts=posts)
 
 @bp.route('/create', methods=('GET', 'POST'))
@@ -43,6 +45,8 @@ def create():
                 )
             )
             connection.commit()
+            cursor.close()
+            #connection.close()
             return redirect(url_for('blog.index'))
 
     return render_template('blog/create.html')
@@ -56,6 +60,8 @@ def get_post(id, check_author=True):
         " WHERE p.id = '{}'".format(id)
     )
     post = cursor.fetchone()
+    cursor.close()
+    #connection.close()
 
     if post is None:
         abort(404, f"Post id {id} doesn't exist.")
@@ -84,10 +90,11 @@ def update(id):
             connection = get_db()
             cursor = connection.cursor(dictionary=True)
             cursor.execute(
-                "UPDATE post SET title = '{}', body = '{}'".format(title, body),
-                " WHERE id = '{}'".format(id)
+                "UPDATE post SET title = '{}', body = '{}' WHERE id = '{}'".format(title, body, id)
             )
             connection.commit()
+            cursor.close()
+            #connection.close()
             return redirect(url_for('blog.index'))
 
     return render_template('blog/update.html', post=post)
@@ -100,4 +107,6 @@ def delete(id):
     cursor = connection.cursor(dictionary=True)
     cursor.execute("DELETE FROM post WHERE id = '{}'".format(id))
     connection.commit()
+    cursor.close()
+    #connection.close()
     return redirect(url_for('blog.index'))

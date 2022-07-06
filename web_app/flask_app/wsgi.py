@@ -52,6 +52,8 @@ def create_app(test_config=None):
 
         #cursor.close()
         #db.close_db()
+        cursor.close()
+        #connection.close()
 
         resp = jsonify(rows)
         
