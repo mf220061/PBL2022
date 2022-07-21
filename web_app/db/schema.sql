@@ -6,16 +6,16 @@ DROP TABLE IF EXISTS post;
 
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  username varchar(250) UNIQUE NOT NULL,
-  password varchar(250) NOT NULL
+  username varchar(65535) UNIQUE NOT NULL,
+  password varchar(65535) NOT NULL
 );
 
 CREATE TABLE post (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   author_id INTEGER NOT NULL,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  title varchar(250) NOT NULL,
-  body varchar(250) NOT NULL,
+  title varchar(65535) NOT NULL,
+  body varchar(65535) NOT NULL,
   FOREIGN KEY (author_id) REFERENCES user (id)
 );
 
