@@ -70,6 +70,10 @@ def create_app(test_config=None):
     app.register_blueprint(blog.bp)
     app.add_url_rule('/', endpoint='index')
 
+    import compiler
+    app.config['UPLOAD_FOLDER'] = compiler.UPLOAD_FOLDER
+    app.register_blueprint(compiler.bp)
+
     return app
 
 app = create_app()
