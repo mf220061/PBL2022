@@ -7,6 +7,7 @@ services:
       - db
     volumes:
       - ./flask_app:/app
+      - ./flask_app/files:/app/files
       - socket:/tmp
         #- ./flask_app/instance:/app/instance
     command: /bin/bash -c "uwsgi --ini /app/app.ini"
