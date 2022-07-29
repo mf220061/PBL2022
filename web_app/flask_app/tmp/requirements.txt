@@ -1,0 +1,7 @@
+wheel
+cryptography
+Flask==2.1.0
+uWSGI==2.0.19.1
+mysql-connector-python==8.0.21
+flask-bootstrap==3.3.7.1
+Werkzeug==2.1.2
