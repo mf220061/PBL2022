@@ -2,7 +2,8 @@ version: "3"
 services:
   flask_app:
     container_name: pbl-flask_app
-    build: ./flask_app
+    #build: ./flask_app
+    image: mf220061/flask_and_compiler:0.1
     links:
       - db
     volumes:

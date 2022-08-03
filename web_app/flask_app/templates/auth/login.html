@@ -1,13 +1,10 @@
-{% extends 'bootstrap/base.html' %}
+{% extends 'base.html' %}
 
 {% block header %}
-<div class="container">
   <h1>{% block title %}Log In{% endblock %}</h1>
-</div>
 {% endblock %}
 
 {% block content %}
-<div class="container">
   <form method="post">
     <label for="username">Username</label>
     <input name="username" id="username" required>
@@ -15,5 +12,4 @@
     <input type="password" name="password" id="password" required>
     <input type="submit" value="Log In" class="btn btn-primary">
   </form>
-</div>
 {% endblock %}
