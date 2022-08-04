@@ -24,12 +24,8 @@ CREATE TABLE rireki (
   author_id INTEGER NOT NULL,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   dir_path varchar(1024) NOT NULL,
+  num varchar(1024) NOT NULL,
   tex varchar(1024) NOT NULL,
+  name varchar(1024) NOT NULL, 
   FOREIGN KEY (author_id) REFERENCES user (id)
 );
-
-INSERT INTO user (username, password)
-VALUES ('oda', 'oda');
-
-INSERT INTO rireki (dir_path, tex, author_id)
-VALUES ('/app/files/0/', 'platex', 1);

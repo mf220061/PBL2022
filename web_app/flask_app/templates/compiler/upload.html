@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Upload{% endblock %}</h1>
+  <h1>{% block title %}Compiler{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('compiler.index') }}">History</a>
+  {% endif %}
 {% endblock %}
 
 {% block content %}

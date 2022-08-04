@@ -71,11 +71,12 @@ def create_app(test_config=None):
 
     import blog
     app.register_blueprint(blog.bp)
-    app.add_url_rule('/', endpoint='index')
+    #app.add_url_rule('/', endpoint='index')
 
     import compiler
     app.config['UPLOAD_FOLDER'] = compiler.UPLOAD_FOLDER
     app.register_blueprint(compiler.bp)
+    app.add_url_rule('/', endpoint='index')
 
     return app
 
