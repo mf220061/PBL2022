@@ -81,6 +81,7 @@ def upload():
             return redirect(request.url)
 
         if file and allowed_file(file.filename):
+            #subprocess.run()
             filename = secure_filename(file.filename)
             file.save(os.path.join(UPLOAD_FOLDER, filename))
 
