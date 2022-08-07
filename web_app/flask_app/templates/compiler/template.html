@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}History{% endblock %}</h1>
+  <h1>{% block title %}Template{% endblock %}</h1>
   {% if g.user %}
     <a class="action" href="{{ url_for('compiler.upload') }}">Compiler</a>
-    <a class="action" href="{{ url_for('compiler.template') }}">Template</a>
+    <a class="action" href="{{ url_for('compiler.index') }}">History</a>
   {% endif %}
 {% endblock %}
 
@@ -12,13 +12,11 @@
   {% for post in posts %}
     <article class="post">
       <header>
-        {% if g.user['id'] == post['author_id'] %}
         <div>
           <h1>{{ post['name'] }} ({{ post['num'] }})</h1>
           <div class="about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
         </div>
           <a class="action" href="{{ url_for('compiler.result', id=post['id']) }}">Detail</a>
-        {% endif %}
       </header>
       <p class="body">{{ post['body'] }}</p>
     </article>
