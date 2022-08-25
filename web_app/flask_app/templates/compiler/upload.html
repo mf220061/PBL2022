@@ -4,6 +4,7 @@
   <h1>{% block title %}Compiler{% endblock %}</h1>
   {% if g.user %}
     <a class="action" href="{{ url_for('compiler.index') }}">History</a>
+    <a class="action" href="{{ url_for('compiler.template') }}">Template</a>
   {% endif %}
 {% endblock %}
 

@@ -22,6 +22,34 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @bp.route('/')
+def template():
+    connection = get_db()
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute(
+        #"SELECT t.id, u.username, r.created, r.name, r.author_id, t.stars, r.num"
+        "SELECT t.id, created, name, author_id, stars, num, username"
+        " FROM template t JOIN rireki r ON t.tex_id = r.id JOIN user u ON r.author_id = u.id"
+        " ORDER BY r.created DESC"
+    )
+    posts = cursor.fetchall()
+    cursor.close()
+    #connection.close()
+    return render_template('compiler/template.html', posts=posts)
+
+@bp.route('/<int:id>/register')
+@login_required
+def register(id):
+    connection = get_db()
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute(
+        "INSERT INTO template (tex_id)"
+        " VALUES ({})".format(id)
+    )
+    connection.commit()
+    cursor.close()
+    return render_template('compiler/index.html')
+
+@bp.route('/history')
 def index():
     connection = get_db()
     cursor = connection.cursor(dictionary=True)
