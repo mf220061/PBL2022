@@ -6,6 +6,8 @@ web_app/flask_app/files/
 web_app/db/data/
 web_app/db/logs/
 
+*.zip
+
 venv/
 
 *.pyc
